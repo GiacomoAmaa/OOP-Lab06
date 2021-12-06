@@ -77,12 +77,16 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
         return false;
     }
 
-    @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
+    	Set<U> set = new TreeSet<>();
+    	for(U user : this.followed.keySet()) {
+    		if (this.followed.get(user).contains(groupName)) {
+    			set.add(user);
+    		}
+    	}
+    	return set;
     }
 
-    @Override
     public List<U> getFollowedUsers() {
     	List<U> list = new LinkedList<>(this.followed.keySet());
         return list ;
