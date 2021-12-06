@@ -29,7 +29,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * think of what type of keys and values would best suit the requirements
      */
 	
-	Map<U,List<String>> followed ; 
+	Map<U,String> followed ; 
 
     /*
      * [CONSTRUCTORS]
@@ -57,7 +57,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
     	super(name, surname, user, userAge);
-    	this.followed = new TreeMap<>();
+    	this.followed = new HashMap<>();
     }
     
     public SocialNetworkUserImpl(final String name, final String surname, final String user) {
@@ -73,20 +73,16 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
 
     public boolean addFollowedUser(final String circle, final U user) {
     	if (!this.getFollowedUsers().contains(user)) { 
-    		this.followed.put(user, List.of(circle));
+    		this.followed.put(user, circle);
     		return true;
     	}
-    	if (!this.followed.get(user).contains(circle)) {
-    		this.followed.get(user).add(circle);
-    		return false;
-    	} 
         return false;
     }
 
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-    	Set<U> set = new TreeSet<>();
+    	Set<U> set = new HashSet<>();
     	for(U user : this.followed.keySet()) {
-    		if (this.followed.get(user).contains(groupName)) {
+    		if (this.followed.get(user).equals(groupName)) {
     			set.add(user);
     		}
     	}
