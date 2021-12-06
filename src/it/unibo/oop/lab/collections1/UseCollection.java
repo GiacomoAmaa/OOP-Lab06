@@ -23,6 +23,8 @@ public final class UseCollection {
     	final int MIN = 1000;
     	final int MAX = 2000;
     	final int HEAD = 0;
+    	final int TEST_SIZE = 100000;
+    	final int TO_READ = 1000;
     	int temp ;
     	List<Integer> aList = new ArrayList<>();
     	List<Integer> lList = new LinkedList<>(aList);
@@ -35,6 +37,12 @@ public final class UseCollection {
     	for(Integer elem: aList) {
     		System.out.println(elem);
     	}
+    	fillWith(aList,TEST_SIZE);
+    	fillWith(lList,TEST_SIZE);
+    	testRead(aList,TO_READ);
+    	testRead(lList,TO_READ);
+    	
+    	
     	
         /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
@@ -96,9 +104,23 @@ public final class UseCollection {
            list.add(HEAD, i);
         }
         time = System.nanoTime() - time;
-        System.out.println("Converting " + numElem
-                + " int to String and inserting them in a Set took " + time
+        System.out.println("Inserting " + numElem
+                + " int in a list took " + time
                 + "ns (" + time / TO_MS + "ms)");
         System.out.println(list);
+    }
+    
+    private static void testRead (List<Integer> list , int toRead) {
+    	final int TO_MS = 1_000_000;
+        long time = System.nanoTime();
+        final int MIDDLE = list.size()/2 ;
+       
+        for (int i = 1; i <= toRead; i++) {
+           list.get(MIDDLE);
+        }
+        time = System.nanoTime() - time;
+        System.out.println("Reading " + toRead
+                + " elements in the middle of a list took " + time
+                + "ns (" + time / TO_MS + "ms)");
     }
 }
