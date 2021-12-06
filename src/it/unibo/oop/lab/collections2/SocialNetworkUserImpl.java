@@ -30,7 +30,6 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
 	
 	Map<U,List<String>> followed ; 
-	List<String> followers ;
 
     /*
      * [CONSTRUCTORS]
@@ -59,7 +58,6 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
     	super(name, surname, user, userAge);
     	this.followed = new TreeMap<>();
-    	this.followers = new LinkedList<>();
     }
     
     public SocialNetworkUserImpl(final String name, final String surname, final String user) {
@@ -74,6 +72,14 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
 
     public boolean addFollowedUser(final String circle, final U user) {
+    	if (!this.getFollowedUsers().contains(user)) { 
+    		this.followed.put(user, List.of(circle));
+    		return true;
+    	}
+    	if (!this.followed.get(user).contains(circle)) {
+    		this.followed.get(user).add(circle);
+    		return false;
+    	} 
         return false;
     }
 
