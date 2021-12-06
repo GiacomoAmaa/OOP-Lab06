@@ -1,10 +1,6 @@
 package it.unibo.oop.lab.collections1;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Example class using {@link java.util.List} and {@link java.util.Map}.
@@ -20,31 +16,7 @@ public final class UseCollection {
      *            unused
      */
     public static void main(final String... s) {
-    	final int MIN = 1000;
-    	final int MAX = 2000;
-    	final int HEAD = 0;
-    	final int TEST_SIZE = 100000;
-    	final int TO_READ = 1000;
-    	int temp ;
-    	List<Integer> aList = new ArrayList<>();
-    	List<Integer> lList = new LinkedList<>(aList);
-    	temp = aList.get(HEAD);
-    	aList.set(HEAD, aList.get(aList.size() - 1));
-    	aList.set(aList.size()-1, temp);
-    	for (int i = MIN ; i < MAX - 1; i++) {
-    		aList.add(i);
-    	}
-    	for(Integer elem: aList) {
-    		System.out.println(elem);
-    	}
-    	fillWith(aList,TEST_SIZE);
-    	fillWith(lList,TEST_SIZE);
-    	testRead(aList,TO_READ);
-    	testRead(lList,TO_READ);
-    	
-    	
-    	
-        /*
+    	   /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
          */
@@ -93,6 +65,43 @@ public final class UseCollection {
         /*
          * 8) Compute the population of the world
          */
+    	final int MIN = 1000;
+    	final int MAX = 2000;
+    	final int HEAD = 0;
+    	final int TEST_SIZE = 100000;
+    	final int TO_READ = 1000;
+    	final String[] continents = {"Africa", "Americas", "Antartica", "Asia", "Europe", "Oceania"};
+    	final double [] population = {1110635000, 972005000, 0, 4298723000.0, 742452000, 38304000 };
+    	
+    	double totPopulation = 0;
+    	int temp ;
+    	
+    	List<Integer> aList = new ArrayList<>();
+    	temp = aList.get(HEAD);
+    	aList.set(HEAD, aList.get(aList.size() - 1));
+    	aList.set(aList.size()-1, temp);
+    	for (int i = MIN ; i < MAX - 1; i++) {
+    		aList.add(i);
+    	}
+    	for(Integer elem: aList) {
+    		System.out.println(elem);
+    	}
+    	
+    	List<Integer> lList = new LinkedList<>(aList);
+    	fillWith(aList,TEST_SIZE);
+    	fillWith(lList,TEST_SIZE);
+    	testRead(aList,TO_READ);
+    	testRead(lList,TO_READ);
+    	
+    	Map<String,Double> map = new TreeMap<>();
+    	for(int i = 0 ;i < continents.length; i++) {
+    		map.put(continents[i], population[i]);
+    	}
+    	 for (Double elem : map.values()) {
+    		 totPopulation += elem;
+    	 }
+    	 System.out.println(totPopulation);
+    
     }
     
     private static void fillWith (List<Integer> list , int numElem) {
@@ -123,4 +132,5 @@ public final class UseCollection {
                 + " elements in the middle of a list took " + time
                 + "ns (" + time / TO_MS + "ms)");
     }
+    
 }
