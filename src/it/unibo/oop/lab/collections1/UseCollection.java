@@ -3,6 +3,8 @@ package it.unibo.oop.lab.collections1;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Example class using {@link java.util.List} and {@link java.util.Map}.
@@ -29,6 +31,9 @@ public final class UseCollection {
     	aList.set(aList.size()-1, temp);
     	for (int i = MIN ; i < MAX - 1; i++) {
     		aList.add(i);
+    	}
+    	for(Integer elem: aList) {
+    		System.out.println(elem);
     	}
     	
         /*
@@ -80,5 +85,20 @@ public final class UseCollection {
         /*
          * 8) Compute the population of the world
          */
+    }
+    
+    private static void fillWith (List<Integer> list , int numElem) {
+    	final int HEAD = 0;
+    	final int TO_MS = 1_000_000;
+        long time = System.nanoTime();
+       
+        for (int i = 1; i <= numElem; i++) {
+           list.add(HEAD, i);
+        }
+        time = System.nanoTime() - time;
+        System.out.println("Converting " + numElem
+                + " int to String and inserting them in a Set took " + time
+                + "ns (" + time / TO_MS + "ms)");
+        System.out.println(list);
     }
 }
