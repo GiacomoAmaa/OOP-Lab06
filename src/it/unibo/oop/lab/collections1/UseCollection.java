@@ -71,18 +71,18 @@ public final class UseCollection {
     	final int TEST_SIZE = 100000;
     	final int TO_READ = 1000;
     	final String[] continents = {"Africa", "Americas", "Antartica", "Asia", "Europe", "Oceania"};
-    	final double [] population = {1110635000, 972005000, 0, 4298723000.0, 742452000, 38304000 };
+    	final double[] population = {1110635000, 972005000, 0, 4298723000.0, 742452000, 38304000 };
     	
     	double totPopulation = 0;
     	int temp ;
     	
     	List<Integer> aList = new ArrayList<>();
-    	temp = aList.get(HEAD);
-    	aList.set(HEAD, aList.get(aList.size() - 1));
-    	aList.set(aList.size()-1, temp);
     	for (int i = MIN ; i < MAX - 1; i++) {
     		aList.add(i);
     	}
+    	temp = aList.get(HEAD);
+    	aList.set(HEAD, aList.get(aList.size() - 1));
+    	aList.set(aList.size()-1, temp);
     	for(Integer elem: aList) {
     		System.out.println(elem);
     	}
@@ -116,7 +116,6 @@ public final class UseCollection {
         System.out.println("Inserting " + numElem
                 + " int in a list took " + time
                 + "ns (" + time / TO_MS + "ms)");
-        System.out.println(list);
     }
     
     private static void testRead (List<Integer> list , int toRead) {
