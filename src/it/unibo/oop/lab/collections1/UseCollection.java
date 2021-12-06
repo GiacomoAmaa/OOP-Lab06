@@ -20,8 +20,13 @@ public final class UseCollection {
     public static void main(final String... s) {
     	final int MIN = 1000;
     	final int MAX = 2000;
-    	
-    	List<Integer> aList = new ArrayList<>();    	
+    	final int HEAD = 0;
+    	int temp ;
+    	List<Integer> aList = new ArrayList<>();
+    	List<Integer> lList = new LinkedList<>(aList);
+    	temp = aList.get(HEAD);
+    	aList.set(HEAD, aList.get(aList.size() - 1));
+    	aList.set(aList.size()-1, temp);
     	for (int i = MIN ; i < MAX - 1; i++) {
     		aList.add(i);
     	}
