@@ -1,7 +1,6 @@
 package it.unibo.oop.lab.collections2;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * 
@@ -29,6 +28,9 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * 
      * think of what type of keys and values would best suit the requirements
      */
+	
+	Map<U,List<String>> followed ; 
+	List<String> followers ;
 
     /*
      * [CONSTRUCTORS]
@@ -55,8 +57,15 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      *            application
      */
     public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
-        super(name, surname, user, userAge);
+    	super(name, surname, user, userAge);
+    	this.followed = new TreeMap<>();
+    	this.followers = new LinkedList<>();
     }
+    
+    public SocialNetworkUserImpl(final String name, final String surname, final String user) {
+    	this(name,surname,user,-1);
+    }
+
 
     /*
      * [METHODS]
@@ -64,7 +73,6 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * Implements the methods below
      */
 
-    @Override
     public boolean addFollowedUser(final String circle, final U user) {
         return false;
     }
@@ -76,7 +84,8 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
 
     @Override
     public List<U> getFollowedUsers() {
-        return null;
+    	List<U> list = new LinkedList<>(this.followed.keySet());
+        return list ;
     }
 
 }
