@@ -25,7 +25,7 @@ public class NotEnoughBatteryException extends RuntimeException {
 	@Override
 	public String toString() {
 		return "Can not move to pos(" + this.x + ", "
-	             + this.y + "), battery at" + batteryLevel;
+	             + this.y + "), Battery level is " + this.batteryLevel;
 		
 	}
 	
