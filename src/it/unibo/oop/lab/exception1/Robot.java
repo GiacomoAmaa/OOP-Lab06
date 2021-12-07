@@ -29,39 +29,23 @@ public class Robot {
         this.robotName = robotName;
     }
 
-    /**
-     * Moves the robot up by one unit.
-     * 
-     * @return If the Up movement has been performed
-     */
+    
     public void moveUp() {
         moveToPosition(environment.getCurrPosX(), this.environment.getCurrPosY() + Robot.MOVEMENT_DELTA);
     }
 
-    /**
-     * Moves the robot down by one unit.
-     * 
-     * @return If the Down movement has been performed
-     */
+    
     public void moveDown() {
         this.moveToPosition(this.environment.getCurrPosX(), environment.getCurrPosY() - Robot.MOVEMENT_DELTA);
     }
 
-    /**
-     * Moves the robot left by one unit.
-     * 
-     * @return A boolean indicating if the Left movement has been performed
-     */
+  
     public void moveLeft() {
          this.moveToPosition(this.environment.getCurrPosX() - Robot.MOVEMENT_DELTA,
                 this.environment.getCurrPosY());
     }
 
-    /**
-     * Moves the robot right by one unit.
-     * 
-     * @return A boolean indicating if the Right movement has been performed
-     */
+    
     public void moveRight() {
          this.moveToPosition(this.environment.getCurrPosX() + Robot.MOVEMENT_DELTA,
                 this.environment.getCurrPosY());
@@ -90,7 +74,7 @@ public class Robot {
             this.consumeBatteryForMovement();
             this.log("Moved to position(" + newX + "," + newY + ").");   
          } else {
-        	 this.log("Can not move to position(" + newX + "," + newY + "). Not enough battery.");
+        	 throw new NotEnoughBatteryException(this.batteryLevel, newX,newY);
         }
     }
 
