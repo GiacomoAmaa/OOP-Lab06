@@ -5,10 +5,10 @@ public class TransactionsOverQuotaException extends IllegalArgumentException {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final double maxTransaction;
+	private final double maxTransactions;
 	
 	public TransactionsOverQuotaException(double maxTransaction) {
-		this.maxTransaction = maxTransaction;
+		this.maxTransactions = maxTransaction;
 	}
 	
 	@Override
@@ -17,7 +17,7 @@ public class TransactionsOverQuotaException extends IllegalArgumentException {
 	}
 	@Override
 	public String toString() {
-		return "You exceeded the maximum transaction amount of" + this.maxTransaction;
+		return "You exceeded the maximum transactions amount of" + this.maxTransactions;
 	}
 	
 	
